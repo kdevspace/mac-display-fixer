@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:nbd}",
+            "name": "Debug nbd",
+            "target": "nbd",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug nbd"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:nbd}",
+            "name": "Release nbd",
+            "target": "nbd",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release nbd"
+        }
+    ]
+}
