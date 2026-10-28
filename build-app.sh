@@ -17,6 +17,12 @@ cp "$BIN" "$APP/Contents/MacOS/nbd"
 # iconutil -c icns build/AppIcon.iconset -o Resources/AppIcon.icns)
 cp Resources/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
 
+# Localizations
+for lang in ru en de es zh-Hans; do
+    mkdir -p "$APP/Contents/Resources/$lang.lproj"
+    cp "Localization/$lang.lproj/Localizable.strings" "$APP/Contents/Resources/$lang.lproj/Localizable.strings"
+done
+
 cat > "$APP/Contents/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -34,14 +40,22 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
     <string>com.kdev.macdisplayfixer</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
+    <key>CFBundleLocalizations</key>
+    <array>
+        <string>ru</string>
+        <string>en</string>
+        <string>de</string>
+        <string>es</string>
+        <string>zh-Hans</string>
+    </array>
     <key>CFBundleName</key>
     <string>Mac Display Fixer</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
+    <string>1.1.0</string>
     <key>CFBundleVersion</key>
-    <string>1</string>
+    <string>2</string>
     <key>LSMinimumSystemVersion</key>
     <string>13.0</string>
     <key>LSUIElement</key>

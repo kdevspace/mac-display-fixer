@@ -1,0 +1,42 @@
+/* Mac Display Fixer — Spanish */
+
+"app.displays.notfound" = "No se encontraron pantallas";
+"app.refresh" = "Actualizar";
+"app.quit" = "Salir";
+
+"app.virtual.section" = "Pantalla virtual";
+"app.virtual.aspect" = "Proporción";
+"app.virtual.rate" = "Frecuencia";
+"app.virtual.hz" = "%ld Hz";
+"app.virtual.create" = "Crear";
+"app.virtual.tip" = "Crea una pantalla virtual y duplica en ella el monitor físico; sus modos (incluido HiDPI) se aplicarán al monitor. Para monitores de 144 Hz crea la pantalla virtual a 144 Hz.";
+"app.virtual.mirrorstatus" = "Duplicado por: %@";
+"app.virtual.disconnect" = "Desconectar";
+"app.virtual.name" = "MDF Virtual";
+"app.preset.portrait" = "(vertical)";
+
+"card.mode" = "Modo";
+"card.rotation" = "Rotación";
+"card.mirroronto" = "Duplicar en";
+"card.none" = "—";
+"card.badge.main" = "Principal";
+"card.badge.builtin" = "Integrada";
+"card.badge.mirrored" = "Duplicada";
+"card.badge.virtual" = "Virtual";
+"card.ddc.checking" = "Comprobando DDC…";
+"card.mirror.notice" = "Duplica «%@»: el modo se define allí. Brillo/contraste disponibles abajo.";
+
+"mode.hidpi.render" = " (HiDPI → renderizado %d×%d)";
+"mode.hz" = "%ld Hz";
+"mode.hz.none" = "—";
+"mode.hidden" = "oculto";
+"mode.summary.rotation" = "rotación %d°";
+
+"store.virtual.createfailed" = "No se pudo crear la pantalla virtual «%@»";
+"store.virtual.ratefailed" = "No se pudo cambiar la frecuencia de la pantalla virtual";
+"store.mode.failed" = "No se pudo aplicar el modo %@";
+"store.rotate.failed" = "No se pudo rotar «%@»";
+"store.mirror.failed" = "No se pudo cambiar la duplicación de «%@»";
+
+"display.builtin.fallback" = "Pantalla integrada";
+"display.fallback" = "Pantalla %ld";

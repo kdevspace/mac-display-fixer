@@ -1,0 +1,42 @@
+/* Mac Display Fixer — Simplified Chinese */
+
+"app.displays.notfound" = "未找到显示器";
+"app.refresh" = "刷新";
+"app.quit" = "退出";
+
+"app.virtual.section" = "虚拟显示器";
+"app.virtual.aspect" = "宽高比";
+"app.virtual.rate" = "刷新率";
+"app.virtual.hz" = "%ld Hz";
+"app.virtual.create" = "创建";
+"app.virtual.tip" = "创建虚拟显示器并将物理显示器镜像到它上面——虚拟显示器的分辨率模式（包括 HiDPI）将应用于该显示器。144 Hz 显示器请创建 144 Hz 的虚拟显示器。";
+"app.virtual.mirrorstatus" = "镜像到此：%@";
+"app.virtual.disconnect" = "断开";
+"app.virtual.name" = "MDF Virtual";
+"app.preset.portrait" = "（竖屏）";
+
+"card.mode" = "模式";
+"card.rotation" = "旋转";
+"card.mirroronto" = "镜像到";
+"card.none" = "—";
+"card.badge.main" = "主显示器";
+"card.badge.builtin" = "内置";
+"card.badge.mirrored" = "镜像中";
+"card.badge.virtual" = "虚拟";
+"card.ddc.checking" = "正在检测 DDC…";
+"card.mirror.notice" = "镜像自“%@”——分辨率模式在该显示器上设置。亮度/对比度见下方。";
+
+"mode.hidpi.render" = " (HiDPI → 渲染 %d×%d)";
+"mode.hz" = "%ld Hz";
+"mode.hz.none" = "—";
+"mode.hidden" = "隐藏";
+"mode.summary.rotation" = "旋转 %d°";
+
+"store.virtual.createfailed" = "无法创建虚拟显示器“%@”";
+"store.virtual.ratefailed" = "无法更改虚拟显示器的刷新率";
+"store.mode.failed" = "无法应用模式 %@";
+"store.rotate.failed" = "无法旋转“%@”";
+"store.mirror.failed" = "无法更改“%@”的镜像设置";
+
+"display.builtin.fallback" = "内置显示器";
+"display.fallback" = "显示器 %ld";

@@ -1,0 +1,42 @@
+/* Mac Display Fixer — English */
+
+"app.displays.notfound" = "No displays found";
+"app.refresh" = "Refresh";
+"app.quit" = "Quit";
+
+"app.virtual.section" = "Virtual display";
+"app.virtual.aspect" = "Aspect";
+"app.virtual.rate" = "Refresh rate";
+"app.virtual.hz" = "%ld Hz";
+"app.virtual.create" = "Create";
+"app.virtual.tip" = "Create a virtual display and mirror the physical monitor onto it — the virtual display's modes (including HiDPI) will then apply to the monitor. For 144 Hz monitors create the virtual display at 144 Hz.";
+"app.virtual.mirrorstatus" = "Mirrored by: %@";
+"app.virtual.disconnect" = "Disconnect";
+"app.virtual.name" = "MDF Virtual";
+"app.preset.portrait" = "(portrait)";
+
+"card.mode" = "Mode";
+"card.rotation" = "Rotation";
+"card.mirroronto" = "Mirror onto";
+"card.none" = "—";
+"card.badge.main" = "Main";
+"card.badge.builtin" = "Built-in";
+"card.badge.mirrored" = "Mirrored";
+"card.badge.virtual" = "Virtual";
+"card.ddc.checking" = "Checking DDC…";
+"card.mirror.notice" = "Mirrors “%@” — its mode is set there. Brightness/contrast are available below.";
+
+"mode.hidpi.render" = " (HiDPI → rendered %d×%d)";
+"mode.hz" = "%ld Hz";
+"mode.hz.none" = "—";
+"mode.hidden" = "hidden";
+"mode.summary.rotation" = "rotation %d°";
+
+"store.virtual.createfailed" = "Failed to create the virtual display “%@”";
+"store.virtual.ratefailed" = "Failed to change the virtual display refresh rate";
+"store.mode.failed" = "Failed to apply mode %@";
+"store.rotate.failed" = "Failed to rotate “%@”";
+"store.mirror.failed" = "Failed to change mirroring for “%@”";
+
+"display.builtin.fallback" = "Built-in display";
+"display.fallback" = "Display %ld";

@@ -61,6 +61,9 @@ enum CLI {
         case "--cgs":
             // Diagnostic: raw dump of the private CGS framebuffer mode list.
             cgsDump(args)
+        case "--l10n":
+            // Diagnostic: localization tables test.
+            l10nTest()
         case "--vtest2":
             virtualTestMinimal(mirror: false)
         case "--vtest3":
@@ -321,6 +324,23 @@ extension CLI {
         let allOK = mirroredNow && unmirrorOK && !stillMirrored && gone
         print(allOK ? "ИТОГ: все проверки пройдены ✔" : "ИТОГ: есть ошибки ✘")
         exit(allOK ? 0 : 1)
+    }
+
+    /// Localization diagnostic: effective language + a sample from every
+    /// bundled .lproj table.
+    private static func l10nTest() {
+        print("Предпочитаемые языки системы:", Locale.preferredLanguages.prefix(3).joined(separator: ", "))
+        print("L(card.mode) [эффективный язык] =", L("card.mode", "Режим"))
+        print("LF(mode.summary.rotation) =", LF("mode.summary.rotation", "поворот %d°", 90))
+        for lang in ["ru", "en", "de", "es", "zh-Hans"] {
+            if let path = Bundle.main.path(forResource: "Localizable", ofType: "strings", inDirectory: nil, forLocalization: lang),
+               let table = NSDictionary(contentsOfFile: path) as? [String: String] {
+                print("\(lang): mode=«\(table["card.mode"] ?? "?")» virtual=«\(table["app.virtual.section"] ?? "?")» hidden=«\(table["mode.hidden"] ?? "?")»")
+            } else {
+                print("\(lang): таблица НЕ найдена")
+            }
+        }
+        exit(0)
     }
 
     /// Raw dump of the CGS framebuffer mode list (debugging offsets).

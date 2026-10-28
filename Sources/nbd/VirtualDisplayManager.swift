@@ -12,8 +12,14 @@ struct VirtualDisplayPreset: Identifiable, Codable, Hashable {
     let aspectHeight: Int
     let step: Int
     let description: String
+    var isPortrait: Bool = false
 
-    var name: String { "MDF Virtual \(description)" }
+    /// Localized menu label (e.g. "9:16 (portrait)").
+    var label: String {
+        isPortrait ? "\(description) \(L("app.preset.portrait", "(портрет)"))" : description
+    }
+
+    var name: String { "\(L("app.virtual.name", "MDF Virtual")) \(label)" }
 
     private var minMultiplier: Int {
         max((720 + (aspectWidth * step - 1)) / (aspectWidth * step),
@@ -51,8 +57,8 @@ enum VirtualDisplayPresets {
         VirtualDisplayPreset(id: 60, aspectWidth: 43, aspectHeight: 18, step: 2, description: "21.5:9"),
         VirtualDisplayPreset(id: 90, aspectWidth: 32, aspectHeight: 9, step: 2, description: "32:9"),
         VirtualDisplayPreset(id: 100, aspectWidth: 20, aspectHeight: 20, step: 2, description: "1:1"),
-        VirtualDisplayPreset(id: 110, aspectWidth: 9, aspectHeight: 16, step: 2, description: "9:16 (портрет)"),
-        VirtualDisplayPreset(id: 120, aspectWidth: 10, aspectHeight: 16, step: 2, description: "10:16 (портрет)"),
+        VirtualDisplayPreset(id: 110, aspectWidth: 9, aspectHeight: 16, step: 2, description: "9:16", isPortrait: true),
+        VirtualDisplayPreset(id: 120, aspectWidth: 10, aspectHeight: 16, step: 2, description: "10:16", isPortrait: true),
         VirtualDisplayPreset(id: 210, aspectWidth: 15, aspectHeight: 10, step: 2, description: "3:2"),
     ]
 

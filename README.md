@@ -5,8 +5,11 @@ resolutions, HiDPI/scaled modes (including hidden GPU-scaled ones), high
 refresh rates, rotation, DDC brightness/contrast and **virtual displays** —
 a lightweight open-source alternative to [BetterDisplay](https://github.com/waydabber/BetterDisplay).
 
-> The UI is currently in Russian. No entitlements, drivers or permissions
-> are required — the app is a launch agent living in your menu bar.
+> The UI is localized into **Russian, English, German, Spanish and Simplified
+> Chinese** and follows your system language (you can also pick a language
+> per app in System Settings). The CLI diagnostics are currently Russian.
+> No entitlements, drivers or permissions are required — the app is a launch
+> agent living in your menu bar.
 
 ## Features
 
@@ -24,6 +27,7 @@ a lightweight open-source alternative to [BetterDisplay](https://github.com/wayd
 | **Mirroring a physical monitor onto a virtual display** | public `CGConfigureDisplayMirrorOfDisplay` (unmirror via `kCGNullDirectDisplay`) — mirrors even survive app relaunches because the serial number is preserved |
 | Forced virtual display removal | private `CGSConfigureDisplayEnabled(false)` — after mirroring, the system holds internal retains on `CGVirtualDisplay`, so releasing the object alone is not enough |
 | **Saved mode persistence & auto-restore** | the selected mode is stored per display UUID **by attributes** (not the volatile mode ID) and re-applied after sleep/reconnect only on an exact match in the current mode list |
+| **Localization** | Russian, English, German, Spanish, Simplified Chinese — standard `Localizable.strings` tables in `Localization/*.lproj`, selected by the system language |
 
 ## Why virtual displays?
 
@@ -39,7 +43,7 @@ HiDPI/scaled modes you want.
 Virtual displays persist in UserDefaults and are recreated on launch.
 
 **Tip:** on many monitors you don't even need a dummy — check the physical
-display's mode list for entries marked “скрытый” (hidden). Those are
+display's mode list for entries marked “hidden” / “скрытый”. Those are
 GPU-scaled framebuffer modes (e.g. `1920×1080 (HiDPI → render 3840×2160)
 · 120 Hz`) applied directly, keeping the monitor's native refresh rate.
 
@@ -87,6 +91,8 @@ Sources/
     PrivateAPIs.swift      # @_silgen_name / dlsym declarations of private APIs
     CLI.swift              # CLI + self-tests
 tools/MakeIcon.swift       # app icon generator (CoreGraphics)
+Localization/             # ru / en / de / es / zh-Hans .lproj string tables
+CHANGELOG.md              # release history
 ```
 
 ## Known limitations

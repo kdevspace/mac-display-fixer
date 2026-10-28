@@ -1,0 +1,42 @@
+/* Mac Display Fixer — Russian (base) */
+
+"app.displays.notfound" = "Дисплеи не найдены";
+"app.refresh" = "Обновить";
+"app.quit" = "Завершить";
+
+"app.virtual.section" = "Виртуальный дисплей";
+"app.virtual.aspect" = "Аспект";
+"app.virtual.rate" = "Частота";
+"app.virtual.hz" = "%ld Гц";
+"app.virtual.create" = "Создать";
+"app.virtual.tip" = "Создайте виртуальный дисплей и зеркалируйте на него физический монитор — тогда его режимы (включая HiDPI) применятся к монитору. Для мониторов 144 Гц создавайте виртуалку на 144 Гц.";
+"app.virtual.mirrorstatus" = "Зеркалируется: %@";
+"app.virtual.disconnect" = "Отключить";
+"app.virtual.name" = "MDF Virtual";
+"app.preset.portrait" = "(портрет)";
+
+"card.mode" = "Режим";
+"card.rotation" = "Поворот";
+"card.mirroronto" = "Зеркалировать";
+"card.none" = "—";
+"card.badge.main" = "Основной";
+"card.badge.builtin" = "Встроенный";
+"card.badge.mirrored" = "Дублируется";
+"card.badge.virtual" = "Виртуальный";
+"card.ddc.checking" = "Проверка DDC…";
+"card.mirror.notice" = "Дублирует «%@» — режим задаётся там. Яркость/контраст доступны ниже.";
+
+"mode.hidpi.render" = " (HiDPI → рендер %d×%d)";
+"mode.hz" = "%ld Гц";
+"mode.hz.none" = "—";
+"mode.hidden" = "скрытый";
+"mode.summary.rotation" = "поворот %d°";
+
+"store.virtual.createfailed" = "Не удалось создать виртуальный дисплей «%@»";
+"store.virtual.ratefailed" = "Не удалось сменить частоту виртуального дисплея";
+"store.mode.failed" = "Не удалось применить режим %@";
+"store.rotate.failed" = "Не удалось повернуть «%@»";
+"store.mirror.failed" = "Не удалось изменить зеркалирование «%@»";
+
+"display.builtin.fallback" = "Встроенный дисплей";
+"display.fallback" = "Дисплей %ld";

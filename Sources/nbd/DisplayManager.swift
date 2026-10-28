@@ -65,9 +65,9 @@ struct ModeInfo: Identifiable, Hashable {
     var id: String { "\(width)x\(height)@\(Int(refreshRate.rounded()))\(isHiDPI ? "+hidpi" : "")" }
 
     var label: String {
-        let hidpi = isHiDPI ? " (HiDPI → рендер \(pixelWidth)×\(pixelHeight))" : ""
-        let hz = refreshRate > 0 ? String(format: "%.0f Гц", refreshRate) : "—"
-        let hidden = isHiddenCGS ? " · скрытый" : ""
+        let hidpi = isHiDPI ? LF("mode.hidpi.render", " (HiDPI → рендер %d×%d)", pixelWidth, pixelHeight) : ""
+        let hz = refreshRate > 0 ? LF("mode.hz", "%ld Гц", Int(refreshRate.rounded())) : L("mode.hz.none", "—")
+        let hidden = isHiddenCGS ? " · " + L("mode.hidden", "скрытый") : ""
         return "\(width)×\(height)\(hidpi) · \(hz)\(hidden)"
     }
 }
@@ -86,7 +86,7 @@ struct DisplayInfo: Identifiable {
 
     var summary: String {
         let mode = currentMode?.label ?? "—"
-        return "\(mode) · поворот \(rotationDegrees)°"
+        return "\(mode) · " + LF("mode.summary.rotation", "поворот %d°", rotationDegrees)
     }
 }
 
@@ -182,7 +182,7 @@ enum DisplayManager {
                 return name
             }
         }
-        return CGDisplayIsBuiltin(id) == 1 ? "Встроенный дисплей" : "Дисплей \(id)"
+        return CGDisplayIsBuiltin(id) == 1 ? L("display.builtin.fallback", "Встроенный дисплей") : LF("display.fallback", "Дисплей %ld", Int(id))
     }
 
     /// All usable display modes: the public CG list (including HiDPI variants

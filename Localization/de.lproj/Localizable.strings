@@ -1,0 +1,42 @@
+/* Mac Display Fixer — German */
+
+"app.displays.notfound" = "Keine Displays gefunden";
+"app.refresh" = "Aktualisieren";
+"app.quit" = "Beenden";
+
+"app.virtual.section" = "Virtuelles Display";
+"app.virtual.aspect" = "Seitenverhältnis";
+"app.virtual.rate" = "Bildwiederholrate";
+"app.virtual.hz" = "%ld Hz";
+"app.virtual.create" = "Erstellen";
+"app.virtual.tip" = "Erstelle ein virtuelles Display und spiegle den physischen Monitor darauf — dann werden dessen Modi (inkl. HiDPI) auf den Monitor angewendet. Für 144-Hz-Monitore erstelle das virtuelle Display mit 144 Hz.";
+"app.virtual.mirrorstatus" = "Gespiegelt von: %@";
+"app.virtual.disconnect" = "Trennen";
+"app.virtual.name" = "MDF Virtual";
+"app.preset.portrait" = "(Hochformat)";
+
+"card.mode" = "Modus";
+"card.rotation" = "Drehung";
+"card.mirroronto" = "Spiegeln auf";
+"card.none" = "—";
+"card.badge.main" = "Hauptdisplay";
+"card.badge.builtin" = "Integriert";
+"card.badge.mirrored" = "Gespiegelt";
+"card.badge.virtual" = "Virtuell";
+"card.ddc.checking" = "DDC wird geprüft…";
+"card.mirror.notice" = "Spiegelt „%@“ — der Modus wird dort festgelegt. Helligkeit/Kontrast findest du unten.";
+
+"mode.hidpi.render" = " (HiDPI → gerendert %d×%d)";
+"mode.hz" = "%ld Hz";
+"mode.hz.none" = "—";
+"mode.hidden" = "versteckt";
+"mode.summary.rotation" = "Drehung %d°";
+
+"store.virtual.createfailed" = "Virtuelles Display „%@“ konnte nicht erstellt werden";
+"store.virtual.ratefailed" = "Bildwiederholrate des virtuellen Displays konnte nicht geändert werden";
+"store.mode.failed" = "Modus %@ konnte nicht angewendet werden";
+"store.rotate.failed" = "„%@“ konnte nicht gedreht werden";
+"store.mirror.failed" = "Spiegelung für „%@“ konnte nicht geändert werden";
+
+"display.builtin.fallback" = "Internes Display";
+"display.fallback" = "Display %ld";

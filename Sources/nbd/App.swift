@@ -30,7 +30,7 @@ struct RootView: View {
                             DisplayCard(display: display)
                         }
                     } else {
-                        Text("Дисплеи не найдены")
+                        Text(L("app.displays.notfound", "Дисплеи не найдены"))
                             .foregroundStyle(.secondary)
                             .padding(.top, 40)
                     }
@@ -51,13 +51,13 @@ struct RootView: View {
                 } label: {
                     Image(systemName: "arrow.clockwise")
                 }
-                .help("Обновить")
+                .help(L("app.refresh", "Обновить"))
                 Spacer()
                 Text("Mac Display Fixer")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Spacer()
-                Button("Завершить") {
+                Button(L("app.quit", "Завершить")) {
                     NSApplication.shared.terminate(nil)
                 }
             }
@@ -71,32 +71,32 @@ struct RootView: View {
             HStack {
                 Image(systemName: "plus.rectangle.on.rectangle")
                     .foregroundStyle(.secondary)
-                Text("Виртуальный дисплей")
+                Text(L("app.virtual.section", "Виртуальный дисплей"))
                     .font(.headline)
                 Spacer()
             }
             HStack {
-                Picker("Аспект", selection: $selectedPresetID) {
+                Picker(L("app.virtual.aspect", "Аспект"), selection: $selectedPresetID) {
                     ForEach(VirtualDisplayPresets.all) { preset in
-                        Text(preset.description).tag(preset.id)
+                        Text(preset.label).tag(preset.id)
                     }
                 }
                 .pickerStyle(.menu)
                 .labelsHidden()
-                Picker("Частота", selection: $selectedRefreshRate) {
+                Picker(L("app.virtual.rate", "Частота"), selection: $selectedRefreshRate) {
                     ForEach(VirtualDisplayPresets.availableRefreshRates, id: \.self) { rate in
-                        Text("\(Int(rate)) Гц").tag(rate)
+                        Text(LF("app.virtual.hz", "%ld Гц", Int(rate))).tag(rate)
                     }
                 }
                 .pickerStyle(.menu)
                 .labelsHidden()
-                Button("Создать") {
+                Button(L("app.virtual.create", "Создать")) {
                     if let preset = VirtualDisplayPresets.preset(id: selectedPresetID) {
                         store.createVirtualDisplay(preset: preset, refreshRate: selectedRefreshRate)
                     }
                 }
             }
-            Text("Создайте виртуальный дисплей и зеркалируйте на него физический монитор — тогда его режимы (включая HiDPI) применятся к монитору. Для мониторов 144 Гц создавайте виртуалку на 144 Гц.")
+            Text(L("app.virtual.tip", "Создайте виртуальный дисплей и зеркалируйте на него физический монитор — тогда его режимы (включая HiDPI) применятся к монитору. Для мониторов 144 Гц создавайте виртуалку на 144 Гц."))
                 .font(.caption2)
                 .foregroundStyle(.secondary)
         }
@@ -128,7 +128,7 @@ struct DisplayCard: View {
                 if state.brightnessAvailable { brightnessSlider(state) }
                 if state.contrastAvailable { contrastSlider(state) }
             } else if !display.isBuiltIn && !display.isVirtual {
-                ProgressView("Проверка DDC…")
+                ProgressView(L("card.ddc.checking", "Проверка DDC…"))
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
@@ -145,16 +145,16 @@ struct DisplayCard: View {
                 .foregroundStyle(.secondary)
             Text(display.name).font(.headline)
             if display.isVirtual {
-                badge("Виртуальный")
+                badge(L("card.badge.virtual", "Виртуальный"))
             }
             if display.isMain && !display.isVirtual {
-                badge("Основной")
+                badge(L("card.badge.main", "Основной"))
             }
             if display.isBuiltIn {
-                badge("Встроенный")
+                badge(L("card.badge.builtin", "Встроенный"))
             }
             if display.isMirrored {
-                badge("Дублируется")
+                badge(L("card.badge.mirrored", "Дублируется"))
             }
             Spacer()
             Text("ID \(display.id)")
@@ -179,7 +179,7 @@ extension DisplayCard {
     private var mirrorNotice: some View {
         let masterID = CGDisplayMirrorsDisplay(display.id)
         let masterName = store.displays.first(where: { $0.id == masterID })?.name ?? "другой дисплей"
-        return Text("Дублирует «\(masterName)» — режим задаётся там. Яркость/контраст доступны ниже.")
+        return Text(LF("card.mirror.notice", "Дублирует «%@» — режим задаётся там. Яркость/контраст доступны ниже.", masterName))
             .font(.caption)
             .foregroundStyle(.secondary)
     }
@@ -187,7 +187,7 @@ extension DisplayCard {
     /// Mirroring picker for real displays: choose which virtual display to mirror.
     private var mirrorPicker: some View {
         HStack {
-            Text("Зеркалировать").foregroundStyle(.secondary).frame(width: 90, alignment: .leading)
+            Text(L("card.mirroronto", "Зеркалировать")).foregroundStyle(.secondary).frame(width: 90, alignment: .leading)
             Picker("", selection: Binding(
                 get: { Int(store.mirroredVirtualMaster(of: display.id) ?? 0) },
                 set: { newValue in
@@ -198,7 +198,7 @@ extension DisplayCard {
                     }
                 }
             )) {
-                Text("—").tag(0)
+                Text(L("card.none", "—")).tag(0)
                 ForEach(store.virtualDisplays) { virtual in
                     Text(virtual.name).tag(Int(virtual.id))
                 }
@@ -215,12 +215,12 @@ extension DisplayCard {
         VStack(alignment: .leading, spacing: 6) {
             let mirroredBy = store.realDisplays.filter { store.mirroredVirtualMaster(of: $0.id) == display.id }
             if !mirroredBy.isEmpty {
-                Text("Зеркалируется: \(mirroredBy.map(\.name).joined(separator: ", "))")
+                Text(LF("app.virtual.mirrorstatus", "Зеркалируется: %@", mirroredBy.map(\.name).joined(separator: ", ")))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
             HStack {
-                Text("Частота").foregroundStyle(.secondary).frame(width: 90, alignment: .leading)
+                Text(L("app.virtual.rate", "Частота")).foregroundStyle(.secondary).frame(width: 90, alignment: .leading)
                 Picker("", selection: Binding(
                     get: { store.virtualRefreshRate(displayID: display.id) },
                     set: { newValue in
@@ -228,7 +228,7 @@ extension DisplayCard {
                     }
                 )) {
                     ForEach(VirtualDisplayPresets.availableRefreshRates, id: \.self) { rate in
-                        Text("\(Int(rate)) Гц").tag(rate)
+                        Text(LF("app.virtual.hz", "%ld Гц", Int(rate))).tag(rate)
                     }
                 }
                 .pickerStyle(.menu)
@@ -238,7 +238,7 @@ extension DisplayCard {
             Button(role: .destructive) {
                 store.removeVirtualDisplay(displayID: display.id)
             } label: {
-                Label("Отключить", systemImage: "minus.circle")
+                Label(L("app.virtual.disconnect", "Отключить"), systemImage: "minus.circle")
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -246,7 +246,7 @@ extension DisplayCard {
 
     private var modePicker: some View {
         HStack {
-            Text("Режим").foregroundStyle(.secondary).frame(width: 90, alignment: .leading)
+            Text(L("card.mode", "Режим")).foregroundStyle(.secondary).frame(width: 90, alignment: .leading)
             Picker("", selection: Binding(
                 get: { display.currentMode?.id ?? "" },
                 set: { newID in
@@ -267,7 +267,7 @@ extension DisplayCard {
 
     private var rotationPicker: some View {
         HStack {
-            Text("Поворот").foregroundStyle(.secondary).frame(width: 90, alignment: .leading)
+            Text(L("card.rotation", "Поворот")).foregroundStyle(.secondary).frame(width: 90, alignment: .leading)
             Picker("", selection: Binding(
                 get: { store.rotating.contains(display.id) ? -1 : display.rotationDegrees },
                 set: { newValue in

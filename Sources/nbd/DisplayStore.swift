@@ -142,7 +142,7 @@ extension DisplayStore {
 
     func applyMode(_ mode: ModeInfo, to display: DisplayInfo) {
         let ok = DisplayManager.apply(mode, to: display.id)
-        if !ok { lastMessage = "Не удалось применить режим \(mode.label)" }
+        if !ok { lastMessage = LF("store.mode.failed", "Не удалось применить режим %@", mode.label) }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.refresh()
         }
@@ -158,7 +158,7 @@ extension DisplayStore {
             Task { @MainActor [weak self] in
                 guard let self else { return }
                 self.rotating.remove(displayID)
-                if !success { self.lastMessage = "Не удалось повернуть «\(displayName)»" }
+                if !success { self.lastMessage = LF("store.rotate.failed", "Не удалось повернуть «%@»", displayName) }
                 self.refresh()
             }
         }
@@ -176,7 +176,7 @@ extension DisplayStore {
 
     func createVirtualDisplay(preset: VirtualDisplayPreset, refreshRate: Double = VirtualDisplayPresets.defaultRefreshRate) {
         guard VirtualDisplayManager.shared.create(preset: preset, refreshRate: refreshRate) else {
-            lastMessage = "Не удалось создать виртуальный дисплей «\(preset.description)»"
+            lastMessage = LF("store.virtual.createfailed", "Не удалось создать виртуальный дисплей «%@»", preset.label)
             return
         }
         scheduleRefresh()
@@ -186,7 +186,7 @@ extension DisplayStore {
     /// so mirrors re-attach automatically).
     func setVirtualRefreshRate(displayID: CGDirectDisplayID, rate: Double) {
         guard VirtualDisplayManager.shared.setRefreshRate(displayID: displayID, rate: rate) else {
-            lastMessage = "Не удалось сменить частоту виртуального дисплея"
+            lastMessage = L("store.virtual.ratefailed", "Не удалось сменить частоту виртуального дисплея")
             return
         }
         scheduleRefresh()
@@ -212,7 +212,7 @@ extension DisplayStore {
             ok = DisplayManager.unsetMirror(display: display.id)
         }
         if !ok {
-            lastMessage = "Не удалось изменить зеркалирование «\(display.name)»"
+            lastMessage = LF("store.mirror.failed", "Не удалось изменить зеркалирование «%@»", display.name)
         }
         scheduleRefresh()
     }
